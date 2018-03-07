@@ -56,7 +56,9 @@
         "y","<enter>", "<wait>",  
 	"192.168.1.2", "<enter>","<wait>",
 	"192.168.1.200", "<enter>","<wait>",
-        "y","<enter>", "<wait10>", "<enter>"
+        "y","<enter>", "<wait>", "<enter>",
+        "5","<enter>", "<wait>",  
+        "y","<enter>", "<wait>"
 
       ],
       "export_opts": [
