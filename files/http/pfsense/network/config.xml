@@ -73,25 +73,24 @@
 		<enablesshd>enabled</enablesshd>
 	</system>
 	<interfaces>
-		<lan>
+		<wan>
 			<enable></enable>
 			<if>em0</if>
 			<ipaddr>dhcp</ipaddr>
 			<ipaddrv6>dhcp6</ipaddrv6>
 			<gateway></gateway>
-			<blockbogons>on</blockbogons>
+			<blockbogons>off</blockbogons>
 			<media></media>
 			<mediaopt></mediaopt>
 			<dhcp6-duid></dhcp6-duid>
 			<dhcp6-ia-pd-len>0</dhcp6-ia-pd-len>
-		</lan>
+		</wan>
 		<lan>
 			<enable></enable>
 			<if>em1</if>
 			<descr><![CDATA[LAN]]></descr>
-			<ipaddr>192.168.0.99</ipaddr>
+			<ipaddr>192.168.1.1</ipaddr>
 			<subnet>24</subnet>
-			<gateway>192.168.0.1</gateway>
 			<spoofmac></spoofmac>
 		</lan>
 	</interfaces>
@@ -111,7 +110,7 @@
 	<snmpd>
 		<syslocation></syslocation>
 		<syscontact></syscontact>
-		rocommunity>public</rocommunity>
+		<rocommunity>public</rocommunity>
 	</snmpd>
 	<diag>
 		<ipv6nat>
