@@ -71,6 +71,9 @@
 		<serialspeed>115200</serialspeed>
 		<primaryconsole>serial</primaryconsole>
 		<enablesshd>enabled</enablesshd>
+		<shellcmd>pw usermod vagrant -s /usr/local/bin/bash</shellcmd>
+		<shellcmd>pw group mod wheel -m vagrant</shellcmd>
+		<shellcmd>chown -R vagrant /home/vagrant/.ssh</shellcmd>
 	</system>
 	<interfaces>
 		<wan>
