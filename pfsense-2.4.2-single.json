@@ -8,8 +8,8 @@
     "post_shutdown_delay": "1m",
     "export_product": "pfSense",
     "export_producturl": "https://www.pfsense.org",
-    "export_vendor": "@FoxBoxsnet",
-    "export_vendorurl": "https://github.com/FoxBoxsnet",
+    "export_vendor": "pwasiewi",
+    "export_vendorurl": "https://github.com/pwasiewi",
     "export_version": "2.4.2",
     "export_repository": "https://github.com/FoxBoxsnet/packer-pfSense",
     "http_directory": "./files/http/pfsense/single",
@@ -20,7 +20,7 @@
     "ssh_host": "192.168.1.1",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "virtualbox_version": "5.2.6"
+    "virtualbox_version": "5.2.8"
   },
   "builders": [
     {
@@ -32,24 +32,21 @@
       "boot_wait": "60s",
       "boot_command": [
         "A",   "<enter>", "<wait>",
-        "I",   "<enter>", "<wait>",
-        "O",   "<enter>", "<wait>",
-        "S",   "<enter>", "<wait>",
-        "O",   "<enter>", "<wait>", "<wait10><wait10><wait10><wait10>",
-        "N",   "<enter>", "<wait>",
-        "R",   "<enter>", "<wait>", "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
-
-
+        "<enter>", "<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+	"<tab>","<enter>",
+        "cp /conf/config.xml /conf/config.xml.org", "<enter>", "<wait>",
+        "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
+        "reboot", "<enter>", 
+	"<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "14",                              "<enter>", "<wait>",  "y", "<enter>","<wait>",
         "8",                               "<enter>", "<wait>",
         "pkg update",                      "<wait>", "<enter>", "<wait10>",
         "pkg install -y pfSense-pkg-sudo", "<wait>", "<enter>", "<wait10><wait10>",
-
         "cp /conf/config.xml /conf/config.xml.org", "<enter>", "<wait>",
         "curl -sfSL {{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml", "<enter>", "<wait5>",
         "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
-        "reboot", "<enter>", "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>"
-
-
+        "exit", "<enter>"
       ],
       "export_opts": [
         "--manifest",
