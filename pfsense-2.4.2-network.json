@@ -36,7 +36,6 @@
         "<wait10><wait10><wait10><wait10><wait10><wait10>",
 	"<tab>","<enter>",
         "cp /conf/config.xml /conf/config.xml.org", "<enter>", "<wait>",
-        "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
         "reboot", "<enter>", 
 	"<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
         "14",                              "<enter>", "<wait>",  "y", "<enter>","<wait10>",
