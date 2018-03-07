@@ -45,6 +45,7 @@
         "pkg install -y pfSense-pkg-sudo", "<wait>", "<enter>", "<wait10><wait10>",
         "cp /conf/config.xml /conf/config.xml.org", "<enter>", "<wait>",
         "curl -sfSL {{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml", "<enter>", "<wait5>",
+        "echo vagrant | pw user add vagrant -h 0", "<enter>", "<wait5>",
         "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
         "exit", "<enter>"
       ],
