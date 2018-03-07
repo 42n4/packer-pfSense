@@ -26,7 +26,7 @@
 			<descr><![CDATA[System Administrator]]></descr>
 			<scope>system</scope>
 			<groupname>admins</groupname>
-			<bcrypt-hash>$2b$10$WzTshIyF7AngFcq36dTZluZDij5Wufw.Dm.EdY3yxNUyOKU2FTD7K</bcrypt-hash>
+			<bcrypt-hash>$2b$10$uN9vGHD5XUvD6mM4Ozcew.OQMje3g5N29z0sNA3HfBe8iujvPM/Ai</bcrypt-hash>
 			<uid>0</uid>
 			<priv>user-shell-access</priv>
 		</user>
@@ -46,9 +46,9 @@
 		</user>
 		<nextuid>2001</nextuid>
 		<nextgid>2000</nextgid>
-		<timeservers>ntp.nict.jp</timeservers>
+		<timeservers>pl.pool.ntp.org</timeservers>
 		<webgui>
-			<protocol>https</protocol>
+			<protocol>http</protocol>
 			<loginautocomplete></loginautocomplete>
 			<ssl-certref>5a76fecf4372f</ssl-certref>
 			<dashboardcolumns>2</dashboardcolumns>
@@ -70,10 +70,12 @@
 		<timezone>Europe/Warsaw</timezone>
 		<serialspeed>115200</serialspeed>
 		<primaryconsole>serial</primaryconsole>
-		<enablesshd>enabled</enablesshd>
 		<shellcmd>pw usermod vagrant -s /usr/local/bin/bash</shellcmd>
 		<shellcmd>pw group mod wheel -m vagrant</shellcmd>
 		<shellcmd>chown -R vagrant /home/vagrant/.ssh</shellcmd>
+		<enablesshd></enablesshd>
+		<dnsserver>8.8.8.8</dnsserver>
+		<dnsserver>8.8.4.4</dnsserver>
 	</system>
 	<interfaces>
 		<wan>
@@ -82,7 +84,6 @@
 			<ipaddr>dhcp</ipaddr>
 			<ipaddrv6>dhcp6</ipaddrv6>
 			<gateway></gateway>
-			<blockbogons>off</blockbogons>
 			<media></media>
 			<mediaopt></mediaopt>
 			<dhcp6-duid></dhcp6-duid>
@@ -95,13 +96,24 @@
 			<ipaddr>192.168.1.1</ipaddr>
 			<subnet>24</subnet>
 			<spoofmac></spoofmac>
+			<gateway></gateway>
+			<ipaddrv6></ipaddrv6>
+			<subnetv6></subnetv6>
+			<gatewayv6></gatewayv6>
 		</lan>
 	</interfaces>
 	<staticroutes></staticroutes>
-	<dhcpd></dhcpd>
-	<dhcpdv6>
+	<dhcpd>
 		<lan>
 			<enable></enable>
+			<range>
+				<from>192.168.1.2</from>
+				<to>192.168.1.200</to>
+			</range>
+		</lan>
+	</dhcpd>
+	<dhcpdv6>
+		<lan>
 			<range>
 				<from>::1000</from>
 				<to>::2000</to>
@@ -301,8 +313,9 @@
 	</unbound>
 	<dyndnses></dyndnses>
 	<revision>
-		<time>1517759524</time>
-		<username>admin@10.0.2.2</username>
+		<time>1520448315</time>
+		<description><![CDATA[admin@192.168.1.2: Configuration saved on completion of the pfSense setup wizard.]]></description>
+		<username>admin@192.168.1.2</username>
 	</revision>
 	<shaper></shaper>
 	<cert>
@@ -316,31 +329,4 @@
 	<ntpd></ntpd>
 	<dhcrelay></dhcrelay>
 	<dhcrelay6></dhcrelay6>
-	<installedpackages>
-		<package>
-			<name>sudo</name>
-			<pkginfolink>https://doc.pfsense.org/index.php/Sudo_Package</pkginfolink>
-			<descr><![CDATA[sudo allows delegation of privileges to users in the shell so commands can be run as other users, such as root.]]></descr>
-			<website>http://www.sudo.ws/</website>
-			<version>0.3</version>
-			<configurationfile>sudo.xml</configurationfile>
-			<include_file>/usr/local/pkg/sudo.inc</include_file>
-		</package>
-		<sudo>
-			<config>
-				<row>
-					<username>user:vagrant</username>
-					<runas>user:ALL</runas>
-					<nopasswd>ON</nopasswd>
-					<cmdlist>ALL</cmdlist>
-				</row>
-				<add_includedir>none</add_includedir>
-			</config>
-		</sudo>
-		<menu>
-			<name>sudo</name>
-			<section>System</section>
-			<url>/pkg_edit.php?xml=sudo.xml</url>
-		</menu>
-	</installedpackages>
 </pfsense>

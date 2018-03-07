@@ -49,16 +49,15 @@
         "pw group mod wheel -m vagrant", "<enter>", "<wait5>",
         "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
         "echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
-        "exit", "<enter>",
+        "reboot", "<enter>",
+	"<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
         "2","<enter>", "<wait>",  "2", "<enter>","<wait>",
         "192.168.1.1","<enter>", "<wait>",  "24", "<enter>","<wait>",
         "<enter>", "<enter>",
         "y","<enter>", "<wait>",  
 	"192.168.1.2", "<enter>","<wait>",
 	"192.168.1.200", "<enter>","<wait>",
-        "y","<enter>", "<wait>", "<enter>",
-        "5","<enter>", "<wait>",  
-        "y","<enter>", "<wait>"
+        "y","<enter>", "<wait>", "<enter>"
 
       ],
       "export_opts": [
