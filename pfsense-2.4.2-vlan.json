@@ -18,7 +18,7 @@
     "interface_nat64_bridgeadapter": "vlan2",
     "iso_checksum_type": "sha256",
     "iso_checksum": "3fa30cac9b8519e89a176ca8845a5a9536af0e11226f2ec9bcaf85ebcab40416",
-    "iso_url": "./ISO/pfSense-CE-2.4.2-RELEASE-amd64.iso",
+    "iso_url": "/mnt/dd/IMAGES/pfSense-CE-2.4.2-RELEASE-amd64.iso",
     "ssh_host": "10.200.10.1",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
