@@ -116,6 +116,7 @@
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_skip_nat_mapping": true,
       "vboxmanage": [
+
         [ "modifyvm", "{{.Name}}", "--memory",           "{{user `ram_size`}}" ],
         [ "modifyvm", "{{.Name}}", "--rtcuseutc",        "on"                  ],
         [ "modifyvm", "{{.Name}}", "--paravirtprovider", "kvm"                 ],
@@ -123,7 +124,6 @@
         [ "modifyvm", "{{.Name}}", "--cpus",             "{{user `cpu`}}"      ],
         [ "modifyvm", "{{.Name}}", "--audio",            "none"                ],
         [ "modifyvm", "{{.Name}}", "--pae",              "off"                 ],
-
 
         [ "modifyvm", "{{.Name}}", "--nic1",             "nat"                 ],
         [ "modifyvm", "{{.Name}}", "--nicpromisc1",      "allow-all"           ],
