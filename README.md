@@ -12,6 +12,8 @@ https://www.pfsense.org/download/
 
 ```
 packer build -only=virtualbox-iso pfsense-2.4.2-network.json
+#all packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/
+#pfsense is based on freebsd 11.1
 #upload box to https://app.vagrantup.com
 vagrant up
 ```
