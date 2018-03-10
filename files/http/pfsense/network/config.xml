@@ -53,6 +53,9 @@
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<crypto_hardware>cryptodev</crypto_hardware>
 		<enablesshd></enablesshd>
+        	<shellcmd>echo packer | pw usermod root -h 0</shellcmd>
+		<shellcmd>mkdir /home/vagrant/.ssh</shellcmd>
+		<shellcmd>chown -R vagrant /home/vagrant/.ssh</shellcmd>
 	</system>
 	<interfaces>
 		<wan>
