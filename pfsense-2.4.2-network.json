@@ -2,7 +2,7 @@
   "variables": {
     "vagrant_username": "42n4",
     "vagrant_name": "pfsense",
-    "version": "0.7",
+    "version": "0.8",
     "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
     "vm_name": "pfsense_vbox",
     "cpu": "2",

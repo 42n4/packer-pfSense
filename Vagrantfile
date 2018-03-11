@@ -50,7 +50,7 @@ Vagrant.configure(2) do |config|
             #node.vm.network :forwarded_port, guest: 22, host: 22022, auto_correct: true
             #node.ssh.port = 22
 	    #node.ssh.guest_ip = "192.168.0.101"
-	    node.ssh.password = "packer"
+	    #node.ssh.password = "packer"
 	    #node.vm.network "forwarded_port", guest: 8006, host: 8006 if machine[:hostname] == "server1"
             node.vm.provider "virtualbox" do |vb|
                 vb.customize ["modifyvm", :id, "--memory", machine[:ram]]

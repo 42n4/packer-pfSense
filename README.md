@@ -8,41 +8,46 @@ find the ISO file locally.
 
 https://www.pfsense.org/download/
 
-
-
 # Create OVA
+To build images, simply run.
 
 ```
+git clone https://github.com/pwasiewi/packer-pfSense
+cd packer-ubuntu
+export VAGRANT_CLOUD_TOKEN=the token string taken from Vagrant https://app.vagrantup.com/settings/tokens
+#It uploads the box version based on version number from template.json e.g. "version": "1.8"
 packer build -only=virtualbox-iso pfsense-2.4.2-network.json
-#all packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/
-#pfsense is based on freebsd 11.1
-#upload box to https://app.vagrantup.com
+```
+
+All packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/
+
+Pfsense is based on freebsd 11.1
+
+#Run Vagrant box
+
+```
+#pull box from https://app.vagrantup.com
+vagrant pull 42n4/pfsense
+#NIC config in Vagrantfile
+vagrant destroy
 vagrant up
 ```
 
 #Test ssh
 ```
-ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222 -vvv
+ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222
 
 ```
 
 
-## Pakcer Debug
+## Packer Debug
 
 ```shell
 # Debug for bash etc..
 export PACKER_LOG="DEBUG"
 
-# Debug for fish shell
-set -x PACKER_LOG DEBUG
-
-
 # unDebug for bash etc..
 export PACKER_LOG=""
-
-# unDebug for fish shell
-set -x PACKER_LOG
-
 ```
 
 
