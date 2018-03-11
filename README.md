@@ -29,7 +29,7 @@ Pfsense is based on freebsd 11.1
 ```
 #pull box from https://app.vagrantup.com
 vagrant init 42n4/pfsense
-#NIC config in Vagrantfile
+#NIC config in Vagrantfile, change to your settings: I have created boxes in 192.168.0.0/24 network
 vagrant destroy -f; vagrant up
 ```
 
