@@ -43,8 +43,6 @@ Vagrant.configure(2) do |config|
     servers.each do |machine|
         config.vm.define machine[:hostname] do |node|
             node.vm.box = machine[:box]
-            #node.vm.hostname = machine[:hostname]
-            #node.vm.network "public_network", bridge: machine[:bridge] ,ip: machine[:ip], mac: machine[:mac]
 	    #node.vm.network :forwarded_port, guest: 22, host: 2222, guest_ip: "10.0.2.15", host_ip: "localhost", id: "ssh", auto_correct: true
 	    #node.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
             node.ssh.shell = "/bin/sh"
@@ -58,6 +56,8 @@ Vagrant.configure(2) do |config|
                 vb.customize ["modifyvm", :id, "--nic3", "intnet",  "--nictype3", "82540EM", "--intnet3", "intnet0", "--cableconnected3", "on", "--nicpromisc3", "allow-all" ]
                 vb.customize ["modifyvm", :id, "--nic4", "intnet",  "--nictype4", "82540EM", "--intnet4", "intnet0", "--cableconnected4", "on", "--nicpromisc4", "allow-all" ]
             end
+            node.vm.network "public_network", bridge: machine[:bridge] ,ip: machine[:ip], mac: machine[:mac]
+            node.vm.hostname = machine[:hostname]
         end
     end
   config.vm.provision "shell",
@@ -67,5 +67,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell",
     privileged: false,
     run: "always",
-    inline: "sh"
+    inline: "sudo sed 's/101/71/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml"
 end
