@@ -67,5 +67,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell",
     privileged: false,
     run: "always",
-    inline: "sudo sed 's/101/71/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml"
+    inline: "sudo sed 's/101/71/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml && sudo reboot"
 end
