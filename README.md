@@ -38,6 +38,7 @@ vagrant destroy -f; vagrant up
 ## Test ssh
 ```
 ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222
+ssh -vvv fake@getfetch.com
 
 ```
 
