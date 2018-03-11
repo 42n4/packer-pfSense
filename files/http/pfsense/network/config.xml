@@ -53,10 +53,6 @@
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<crypto_hardware>cryptodev</crypto_hardware>
 		<enablesshd></enablesshd>
-                <shellcmd>chmod 660 /usr/local/etc/sudoers</shellcmd>
-                <shellcmd>echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers</shellcmd>
-                <shellcmd>echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers</shellcmd>
-                <shellcmd>chmod 440 /usr/local/etc/sudoers</shellcmd>
 		<shellcmd>echo vagrant | pw usermod root -h 0</shellcmd>
 		<shellcmd>chown -R vagrant /home/vagrant/.ssh</shellcmd>
 	</system>
