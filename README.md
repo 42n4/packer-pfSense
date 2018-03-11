@@ -66,6 +66,7 @@ export PACKER_LOG=""
 ### OVA information
 ---
 
+|             |                                              |
 |:-           |:-                                            |
 | Product     | pfSense                                      |
 | Product URL | https://www.pfsense.org                      |
@@ -88,7 +89,7 @@ export PACKER_LOG=""
 
 ### adduser
 ---
-
+| 1         | 2       |
 |:-         |:-       |
 | username  | vagrant |
 | password  | vagrant |
