@@ -43,11 +43,14 @@ Vagrant.configure(2) do |config|
     servers.each do |machine|
         config.vm.define machine[:hostname] do |node|
             node.vm.box = machine[:box]
-            node.vm.hostname = machine[:hostname]
-            node.vm.network "public_network", bridge: machine[:bridge] ,ip: machine[:ip], mac: machine[:mac]
-	    node.vm.network :forwarded_port, guest: 22, host: 2222, guest_ip: "10.0.2.15", host_ip: "localhost", id: "ssh", auto_correct: true
+            #node.vm.hostname = machine[:hostname]
+            #node.vm.network "public_network", bridge: machine[:bridge] ,ip: machine[:ip], mac: machine[:mac]
+	    #node.vm.network :forwarded_port, guest: 22, host: 2222, guest_ip: "10.0.2.15", host_ip: "localhost", id: "ssh", auto_correct: true
 	    #node.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
             #node.vm.network :forwarded_port, guest: 22, host: 22022, auto_correct: true
+            node.ssh.shell = "/bin/sh"
+	    #node.vm.synced_folder ".", "/vagrant", type: "rsync"
+	    node.vm.synced_folder ".", "/vagrant", disabled: true
             #node.ssh.port = 22
 	    #node.ssh.guest_ip = "192.168.0.101"
 	    #node.ssh.password = "packer"
@@ -61,6 +64,11 @@ Vagrant.configure(2) do |config|
         end
     end
   config.vm.provision "shell",
+    privileged: false,
     run: "once",
-    inline: "echo packer | sudo pw usermod root -h 0"
+    inline: "echo vagrant | sudo pw usermod root -h 0"
+  config.vm.provision "shell",
+    privileged: false,
+    run: "always",
+    inline: "sh"
 end
