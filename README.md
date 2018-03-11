@@ -1,5 +1,5 @@
-## pfSense packer OVA
-pfSense OVA file creation VirtualBox with Packer
+## pfSense packer vagrant box
+pfSense vagrant box file creation VirtualBox with Packer
 
 ## Download ISO manually
 As packer is not able to download gzipped ISO files directly, you have to download
@@ -8,7 +8,7 @@ find the ISO file locally.
 
 https://www.pfsense.org/download/
 
-## Create OVA
+## Create vagrant box
 To build images, simply run.
 
 ```
@@ -16,6 +16,7 @@ git clone https://github.com/pwasiewi/packer-pfSense
 cd packer-ubuntu
 export VAGRANT_CLOUD_TOKEN=the token string taken from Vagrant https://app.vagrantup.com/settings/tokens
 #It uploads the box version based on version number from template.json e.g. "version": "1.8"
+#change 42n4 to your vagrant account name!!
 packer build -only=virtualbox-iso pfsense-2.4.2-network.json
 ```
 
@@ -23,14 +24,15 @@ All packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/A
 
 Pfsense is based on freebsd 11.1
 
-## Run Vagrant box
+## Run Vagrant box (you can omit previous points and use my 42n4/pfsense box)
 
 ```
+wget https://raw.githubusercontent.com/pwasiewi/packer-pfSense/master/Vagrantfile.2routers
+ln -sfn Vagrantfile.2routers Vagrantfile
 #pull box from https://app.vagrantup.com
-vagrant pull 42n4/pfsense
-#NIC config in Vagrantfile
-vagrant destroy
-vagrant up
+vagrant init 42n4/pfsense
+#NIC config in Vagrantfile, change to your settings: I have created boxes in 192.168.0.0/24 network
+vagrant destroy -f; vagrant up
 ```
 
 ## Test ssh
@@ -67,6 +69,7 @@ export PACKER_LOG=""
 ### OVA information
 ---
 
+|             |                                              |
 |:-           |:-                                            |
 | Product     | pfSense                                      |
 | Product URL | https://www.pfsense.org                      |
@@ -89,7 +92,7 @@ export PACKER_LOG=""
 
 ### adduser
 ---
-
+|           |         |
 |:-         |:-       |
 | username  | vagrant |
 | password  | vagrant |

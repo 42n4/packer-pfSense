@@ -1,0 +1,57 @@
+$net='192.168.0.'
+$netpriv=['192.168.1.1','192.168.2.1']
+$ip=[$net+'71', $net+'72']
+#in MSWin it gives you names: VBoxManage.exe list bridgedifs
+#$bridge = 'Intel(R) Ethernet Connection (2) I219-V'
+$bridge = 'enp0s31f6'
+#$bridge='wlp3s0'
+$box = '42n4/pfsense'
+#$box='42n4/ubuntu'
+servers=[
+  {
+    :hostno => 1,
+    :bridge => $bridge,
+    :box => $box,
+    :ram => 2048,
+    :cpu => 2,
+    :mac => '02002751a1bc'
+  }
+#  ,
+#  {
+#    :hostno => 2,
+#    :bridge => $bridge,
+#    :box => $box,
+#    :ram => 2048,
+#    :cpu => 2,
+#    :mac => '0200272864d1'
+#  }
+]
+
+Vagrant.configure(2) do |config|
+    servers.each do |machine|
+        config.vm.define 'router0'+machine[:hostno].to_s do |node|
+            node.vm.box = machine[:box]
+	    #node.vm.network :forwarded_port, guest: 22, host: 2222, guest_ip: '10.0.2.15', host_ip: 'localhost', id: 'ssh', auto_correct: true
+	    #node.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', disabled: true
+            node.ssh.shell = '/bin/sh'
+	    #node.vm.synced_folder '.', '/vagrant', type: 'rsync'
+	    node.vm.synced_folder '.', '/vagrant', disabled: true
+            #node.ssh.port = 22
+	    #node.vm.network 'forwarded_port', guest: 8006, host: 8006 if machine[:hostname] == 'server1'
+            node.vm.provider 'virtualbox' do |vb|
+                vb.customize ['modifyvm', :id, '--memory', machine[:ram]]
+                vb.customize ['modifyvm', :id, '--nic2', 'bridged',  '--nictype2', '82540EM', '--bridgeadapter2', machine[:bridge], '--cableconnected2', 'on', '--nicpromisc2', 'allow-all' ]
+                vb.customize ['modifyvm', :id, '--nic3', 'intnet',  '--nictype3', '82540EM', '--intnet3', 'intnet0', '--cableconnected3', 'on', '--nicpromisc3', 'allow-all' ]
+                vb.customize ['modifyvm', :id, '--nic4', 'intnet',  '--nictype4', '82540EM', '--intnet4', 'intnet0', '--cableconnected4', 'on', '--nicpromisc4', 'allow-all' ]
+            end
+            node.vm.network 'public_network', bridge: machine[:bridge] ,ip: $ip[machine[:hostno]-1], mac: machine[:mac]
+	    config.vm.network "private_network", ip: $netpriv[machine[:hostno]-1]
+            node.vm.hostname = 'router0'+machine[:hostno].to_s
+            node.vm.provision "shell", privileged: false, run: "once", inline: "echo vagrant | sudo pw usermod root -h 0"
+	    print "sudo sed 's/192.168.0.101/"+$ip[machine[:hostno]-1]+"/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml\n"
+            node.vm.provision "shell", privileged: false, run: "always", inline: "sudo sed 's/192.168.0.101/"+$ip[machine[:hostno]-1]+"/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml"
+	    print "sudo sed 's/192.168.1.1/"+$netpriv[machine[:hostno]-1]+"/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml && sudo reboot\n"
+            node.vm.provision "shell", privileged: false, run: "always", inline: "sudo sed 's/192.168.1.1/"+$netpriv[machine[:hostno]-1]+"/g' /conf/config.xml > ./s && sudo mv ./s /conf/config.xml && sudo reboot"
+        end
+    end
+end
