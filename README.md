@@ -1,5 +1,5 @@
 ## pfSense packer vagrant box
-pfSense OVA file creation VirtualBox with Packer
+pfSense vagrant box file creation VirtualBox with Packer
 
 ## Download ISO manually
 As packer is not able to download gzipped ISO files directly, you have to download
