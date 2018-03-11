@@ -1,14 +1,14 @@
-# pfSense packer OVA
+## pfSense packer OVA
 pfSense OVA file creation VirtualBox with Packer
 
-# Download ISO manually
+## Download ISO manually
 As packer is not able to download gzipped ISO files directly, you have to download
 it manually and extract it. Then customize the pfsense-network.json file so packer could
 find the ISO file locally.
 
 https://www.pfsense.org/download/
 
-# Create OVA
+## Create OVA
 To build images, simply run.
 
 ```
@@ -23,7 +23,7 @@ All packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/A
 
 Pfsense is based on freebsd 11.1
 
-#Run Vagrant box
+## Run Vagrant box
 
 ```
 #pull box from https://app.vagrantup.com
@@ -33,7 +33,7 @@ vagrant destroy
 vagrant up
 ```
 
-#Test ssh
+## Test ssh
 ```
 ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222
 
