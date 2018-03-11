@@ -1,4 +1,4 @@
-## pfSense packer OVA
+## pfSense packer vagrant box
 pfSense OVA file creation VirtualBox with Packer
 
 ## Download ISO manually
@@ -8,7 +8,7 @@ find the ISO file locally.
 
 https://www.pfsense.org/download/
 
-## Create OVA
+## Create vagrant box
 To build images, simply run.
 
 ```
@@ -24,7 +24,7 @@ All packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/A
 
 Pfsense is based on freebsd 11.1
 
-## Run Vagrant box
+## Run Vagrant box (you can omit previous points and use my 42n4/pfsense box)
 
 ```
 #pull box from https://app.vagrantup.com
