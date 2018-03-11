@@ -27,6 +27,8 @@ Pfsense is based on freebsd 11.1
 ## Run Vagrant box (you can omit previous points and use my 42n4/pfsense box)
 
 ```
+wget https://raw.githubusercontent.com/pwasiewi/packer-pfSense/master/Vagrantfile.2routers
+ln -sfn Vagrantfile.2routers Vagrantfile
 #pull box from https://app.vagrantup.com
 vagrant init 42n4/pfsense
 #NIC config in Vagrantfile, change to your settings: I have created boxes in 192.168.0.0/24 network
