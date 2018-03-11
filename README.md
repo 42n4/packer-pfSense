@@ -16,6 +16,7 @@ git clone https://github.com/pwasiewi/packer-pfSense
 cd packer-ubuntu
 export VAGRANT_CLOUD_TOKEN=the token string taken from Vagrant https://app.vagrantup.com/settings/tokens
 #It uploads the box version based on version number from template.json e.g. "version": "1.8"
+#change 42n4 to your vagrant account name!!
 packer build -only=virtualbox-iso pfsense-2.4.2-network.json
 ```
 
@@ -89,7 +90,7 @@ export PACKER_LOG=""
 
 ### adduser
 ---
-| 1         | 2       |
+|           |         |
 |:-         |:-       |
 | username  | vagrant |
 | password  | vagrant |
