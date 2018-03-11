@@ -1,5 +1,9 @@
 {
   "variables": {
+    "vagrant_username": "42n4",
+    "vagrant_name": "pfsense",
+    "version": "0.7",
+    "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
     "vm_name": "pfsense_vbox",
     "cpu": "2",
     "guest_os_type": "FreeBSD_64",
@@ -23,8 +27,9 @@
     "wan_gate": "192.168.0.1",
     "ssh_host": "192.168.0.101",
     "ssh_username": "root",
-    "ssh_password": "packer",
-    "virtualbox_version": "5.2.8"
+    "ssh_password": "vagrant",
+    "virtualbox_version": "5.2.8",
+    "vm_dir": "/mnt/dc/VBox"
   },
   "builders": [
     {
@@ -57,7 +62,7 @@
         "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/dbus-1.10.16_1.txz", "<wait>", "<enter>", "<wait5>",
         "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/virtualbox-ose-additions-nox11-5.2.8.txz", "<wait>", "<enter>", "<wait5>",
         "rehash", "<enter>", "<wait5>",
-        "echo packer | pw user add vagrant -m -h 0", "<enter>", "<wait>",
+        "echo vagrant | pw user add vagrant -m -h 0", "<enter>", "<wait>",
         "pw group mod wheel -m vagrant", "<enter>", "<wait>",
         "chmod 660 /usr/local/etc/sudoers", "<enter>", "<wait>",
         "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers", "<enter>", "<wait>",
@@ -161,12 +166,6 @@
       "vrdp_bind_address": "127.0.0.1"
     }
   ],
-  "post-processors": [
-        {
-            "output": "pfsense-{{user `ssh_username`}}.box",
-            "type": "vagrant"
-        }
-  ],
   "provisioners": [
         {
             "inline": [
@@ -180,5 +179,25 @@
             ],
             "type": "shell"
         }
-  ]
+  ],
+  "post-processors": [
+    [
+        {
+            "type": "vagrant",
+            "vagrantfile_template": "vagrantfile.template",
+            "keep_input_artifact": false
+        },
+        {
+            "type": "vagrant-cloud",
+            "access_token": "{{user `cloud_token`}}",
+            "only": ["virtualbox-iso"],
+            "box_tag": "{{user `vagrant_username`}}/{{user `vagrant_name`}}",
+            "version": "{{user `version`}}"
+      }
+    ]
+  ],
+  "push": {
+    "name": "{{user `vagrant_username`}}/{{user `vagrant_name`}}",
+    "vcs": true
+  }
 }

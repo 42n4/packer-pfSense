@@ -8,6 +8,8 @@ find the ISO file locally.
 
 https://www.pfsense.org/download/
 
+
+
 # Create OVA
 
 ```
@@ -17,6 +19,13 @@ packer build -only=virtualbox-iso pfsense-2.4.2-network.json
 #upload box to https://app.vagrantup.com
 vagrant up
 ```
+
+#Test ssh
+```
+ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222 -vvv
+
+```
+
 
 ## Pakcer Debug
 
@@ -53,8 +62,7 @@ set -x PACKER_LOG
 ### OVA information
 ---
 
-|||
-|:-|:-|
+|:-           |:-                                            |
 | Product     | pfSense                                      |
 | Product URL | https://www.pfsense.org                      |
 | Version     | 2.4.2                                        |
