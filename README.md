@@ -27,10 +27,9 @@ Pfsense is based on freebsd 11.1
 
 ```
 #pull box from https://app.vagrantup.com
-vagrant pull 42n4/pfsense
+vagrant init 42n4/pfsense
 #NIC config in Vagrantfile
-vagrant destroy
-vagrant up
+vagrant destroy -f; vagrant up
 ```
 
 ## Test ssh
