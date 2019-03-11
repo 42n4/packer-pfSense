@@ -92,7 +92,7 @@
         "rm -f /conf/trigger_initial_wizard", "<enter>", "<wait>",
         "curl -sfSL {{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml", "<enter>", "<wait5>",
         "exit", "<enter>",
-	"5", "<enter>", "r", "<enter>"
+	"5", "<enter>", "y", "<enter>"
 	
       ],
       "export_opts": [
