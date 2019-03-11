@@ -11,28 +11,29 @@ To build images, simply run.
 
 ```
 git clone https://github.com/pwasiewi/packer-pfSense
-cd packer-ubuntu
-export VAGRANT_CLOUD_TOKEN=the token string taken from Vagrant https://app.vagrantup.com/settings/tokens
+cd packer-pfSense
+export VAGRANT_CLOUD_TOKEN=the token string taken from Vagrant https://app.vagrantup.com/settings/security
+#change 42n4 in a template json to your vagrant account name!!
 #It uploads the box version based on version number from template.json e.g. "version": "1.8"
-#change 42n4 to your vagrant account name!!
 packer build -only=virtualbox-iso pfsense-2.4.2-network.json
 ```
 
 All packages can be taken from http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/
 
-Pfsense is based on freebsd 11.1
+Pfsense is based on freebsd 11.1 (2.4.2/3 - freebsd 11 release2)
 
 ## Run Vagrant box (you can omit previous points and use my 42n4/pfsense box)
 
 ```
-wget https://raw.githubusercontent.com/pwasiewi/packer-pfSense/master/Vagrantfile.2routers
-ln -sfn Vagrantfile.2routers Vagrantfile (for 42n4/pfsense)
-or 
-ln -sfn Vagrantfile.2routers.new Vagrantfile (for 42n4/pfsensebeta)
 #pull box from https://app.vagrantup.com (pfsensebeta for testing new releases)
 vagrant box add 42n4/pfsense
 or
 vagrant box add 42n4/pfsensebeta
+#get Vagrantfile to an empty directory:
+wget https://raw.githubusercontent.com/pwasiewi/packer-pfSense/master/Vagrantfile.2routers
+ln -sfn Vagrantfile.2routers Vagrantfile (for 42n4/pfsense)
+or 
+ln -sfn Vagrantfile.2routers.new Vagrantfile (for 42n4/pfsensebeta)
 #NIC config in Vagrantfile, change to your settings: I have created boxes in 192.168.0.0/24 network
 vagrant destroy -f; vagrant up
 ```
