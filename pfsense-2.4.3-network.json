@@ -14,7 +14,7 @@
     "export_producturl": "https://www.pfsense.org",
     "export_vendor": "pwasiewi",
     "export_vendorurl": "https://github.com/pwasiewi",
-    "export_version": "2.4.2",
+    "export_version": "2.4.3",
     "export_repository": "https://github.com/pwasiewi/packer-pfSense",
     "http_directory": "./files/http/pfsense/network",
     "interface_mgmt_bridgeadapter0": "intnet0",
@@ -92,7 +92,7 @@
         "rm -f /conf/trigger_initial_wizard", "<enter>", "<wait>",
         "curl -sfSL {{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml", "<enter>", "<wait5>",
         "exit", "<enter>",
-	"5", "<enter>", "y", "<enter>"
+	"13", "<enter>", "y", "<enter>"
 	
       ],
       "export_opts": [
