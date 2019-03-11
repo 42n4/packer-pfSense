@@ -1,1 +1,1 @@
-Vagrantfile.2routers.new
+Vagrantfile.2routers
