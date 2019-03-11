@@ -2,9 +2,7 @@
 pfSense vagrant box file creation VirtualBox with Packer
 
 ## Download ISO manually
-As packer is not able to download gzipped ISO files directly, you have to download
-it manually and extract it. Then customize the pfsense-network.json file so packer could
-find the ISO file locally.
+As packer is not able to download gzipped ISO files directly, you have to download it manually and extract it to e.g. 'wget http://mirror.transip.net/pfsense/downloads/pfSense-CE-2.4.2-RELEASE-amd64.iso.gz -O /mnt/tmp/IMAGES/pfSense-CE-2.4.2-RELEASE-amd64.iso.gz && cd /mnt/tmp/IMAGES && gzip -d pfSense-CE-2.4.2-RELEASE-amd64.iso.gz'. Then customize the pfsense-network.json file so packer could find the ISO file locally.
 
 https://www.pfsense.org/download/
 
@@ -28,9 +26,13 @@ Pfsense is based on freebsd 11.1
 
 ```
 wget https://raw.githubusercontent.com/pwasiewi/packer-pfSense/master/Vagrantfile.2routers
-ln -sfn Vagrantfile.2routers Vagrantfile
-#pull box from https://app.vagrantup.com (you can use mine)
+ln -sfn Vagrantfile.2routers Vagrantfile (for 42n4/pfsense)
+or 
+ln -sfn Vagrantfile.2routers.new Vagrantfile (for 42n4/pfsensebeta)
+#pull box from https://app.vagrantup.com (pfsensebeta for testing new releases)
 vagrant box add 42n4/pfsense
+or
+vagrant box add 42n4/pfsensebeta
 #NIC config in Vagrantfile, change to your settings: I have created boxes in 192.168.0.0/24 network
 vagrant destroy -f; vagrant up
 ```

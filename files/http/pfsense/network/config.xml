@@ -61,7 +61,7 @@
 			<enable></enable>
 			<if>em1</if>
 			<descr><![CDATA[WAN]]></descr>
-			<ipaddr>192.168.0.101</ipaddr>
+			<ipaddr>192.168.1.101</ipaddr>
 			<subnet>24</subnet>
 			<gateway>GW_WAN</gateway>
 			<spoofmac></spoofmac>
@@ -69,7 +69,7 @@
 		<lan>
 			<enable></enable>
 			<if>em2</if>
-			<ipaddr>192.168.1.1</ipaddr>
+			<ipaddr>192.168.2.1</ipaddr>
 			<subnet>24</subnet>
 			<ipaddrv6>track6</ipaddrv6>
 			<subnetv6>64</subnetv6>
@@ -99,8 +99,8 @@
 		<lan>
 			<enable></enable>
 			<range>
-				<from>192.168.1.100</from>
-				<to>192.168.1.199</to>
+				<from>192.168.2.100</from>
+				<to>192.168.2.199</to>
 			</range>
 		</lan>
 	</dhcpd>
@@ -157,15 +157,6 @@
 				<network>(self)</network>
 				<port>443</port>
 			</destination>
-			<descr><![CDATA[wan_https]]></descr>
-			<updated>
-				<time>1520626216</time>
-				<username>admin@192.168.1.101</username>
-			</updated>
-			<created>
-				<time>1520626216</time>
-				<username>admin@192.168.1.101</username>
-			</created>
 		</rule>
 		<rule>
 			<id></id>
@@ -190,15 +181,6 @@
 				<network>(self)</network>
 				<port>22</port>
 			</destination>
-			<descr><![CDATA[wan_https]]></descr>
-			<updated>
-				<time>1520626231</time>
-				<username>admin@192.168.1.101</username>
-			</updated>
-			<created>
-				<time>1520626231</time>
-				<username>admin@192.168.1.101</username>
-			</created>
 		</rule>
 		<rule>
 			<type>pass</type>
@@ -249,15 +231,6 @@
 				<network>(self)</network>
 				<port>22</port>
 			</destination>
-			<descr><![CDATA[ssh]]></descr>
-			<updated>
-				<time>1520717159</time>
-				<username>admin@192.168.0.2</username>
-			</updated>
-			<created>
-				<time>1520717159</time>
-				<username>admin@192.168.0.2</username>
-			</created>
 		</rule>
 		<rule>
 			<id></id>
@@ -282,15 +255,6 @@
 				<network>(self)</network>
 				<port>443</port>
 			</destination>
-			<descr><![CDATA[https]]></descr>
-			<updated>
-				<time>1520717173</time>
-				<username>admin@192.168.0.2</username>
-			</updated>
-			<created>
-				<time>1520717173</time>
-				<username>admin@192.168.0.2</username>
-			</created>
 		</rule>
 		<separator>
 			<wan></wan>
@@ -443,8 +407,8 @@
 	<dyndnses></dyndnses>
 	<revision>
 		<time>1520717173</time>
-		<description><![CDATA[admin@192.168.0.2: Firewall: Rules - saved/edited a firewall rule.]]></description>
-		<username>admin@192.168.0.2</username>
+		<description><![CDATA[admin@192.168.1.2: Firewall: Rules - saved/edited a firewall rule.]]></description>
+		<username>admin@192.168.1.2</username>
 	</revision>
 	<cert>
 		<refid>5aa2e17655026</refid>
@@ -466,7 +430,7 @@
 		</gateway_item>
 		<gateway_item>
 			<interface>wan</interface>
-			<gateway>192.168.0.1</gateway>
+			<gateway>192.168.1.1</gateway>
 			<name>GW_WAN</name>
 			<weight>1</weight>
 			<ipprotocol>inet</ipprotocol>
