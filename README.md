@@ -42,6 +42,10 @@ ln -sfn Vagrantfile.2routers.new Vagrantfile (for 42n4/pfsensebeta)
 vagrant destroy -f; vagrant up
 ```
 
+### In M$Windows: https://www.sitepoint.com/getting-started-vagrant-windows/ - you use putty after converting with puttygen a vagrant openssh key to a putty key
+
+![Screen](https://github.com/pwasiewi/packer-proxmox/blob/master/picture/win10connectionwithvagranthost.png)
+
 ## Test ssh
 ```
 ssh -vvv -C -A -X vagrant@127.0.0.1 -p2222
